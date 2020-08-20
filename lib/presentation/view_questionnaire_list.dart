@@ -25,8 +25,6 @@ class _QuestionnaireListViewState extends State<QuestionnaireListView>
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Questionnaire>>(builder: (context, snapshot) {
-      // if (snapshot.connectionState == ConnectionState.waiting) {
-      // }
       if (snapshot.hasError) {
         showSnackBar(context, snapshot.error.toString());
         return viewNoData();
