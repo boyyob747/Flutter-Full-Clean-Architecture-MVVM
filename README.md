@@ -1,16 +1,14 @@
-# flutter_app_clean_architecture
+# Flutter Clean Architecture + MVVM
 
-A new Flutter application.
+Simple of flutter using Clean Architecture and MVVM
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Structure
+1. Data 
+- model : Data objects
+- remote : APIs
+- repository : connect to remote
+2. Domain
+- That is use case baby (connect with repo)
+3. Presentation
+- ViewMode : talks to use cases, init instante of any object, not know about the View, Organizes data and holds View State
+- View : that is UI baby, just observes changes to ViewModel
