@@ -2,6 +2,8 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_clean_architecture/data/model/questionnaire.dart';
 import 'package:flutter_app_clean_architecture/presentation/view_mode_questionnaire_list.dart';
+import 'package:flutter_app_clean_architecture/widgets/circular_progress_indicator_widget.dart';
+import 'package:flutter_app_clean_architecture/widgets/view_no_data.dart';
 
 class ViewQuestionnaireList extends StatelessWidget {
   @override
@@ -27,16 +29,16 @@ class _QuestionnaireListViewState extends State<QuestionnaireListView>
       // }
       if (snapshot.hasError) {
         showSnackBar(context, snapshot.error.toString());
-        return buildListViewNoDataWidget();
+        return viewNoData();
       }
       if (snapshot.connectionState == ConnectionState.active) {
         var pokemonList = snapshot.data;
         if (null != pokemonList)
           return buildListViewWidget(pokemonList);
         else
-          return buildListViewNoDataWidget();
+          return viewNoData();
       }
-      return buildCircularProgressIndicatorWidget();
+      return circularProgressIndicator();
     });
   }
 
@@ -60,21 +62,7 @@ class _QuestionnaireListViewState extends State<QuestionnaireListView>
     ));
   }
 
-  Widget buildCircularProgressIndicatorWidget() {
-    return Expanded(
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-  }
 
-  Widget buildListViewNoDataWidget() {
-    return Expanded(
-      child: Center(
-        child: Text("No Data Available"),
-      ),
-    );
-  }
 
   void showSnackBar(BuildContext context, String errorMessage) async {
     await Future.delayed(Duration.zero);
